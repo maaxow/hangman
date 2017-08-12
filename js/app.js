@@ -36,13 +36,15 @@ app.controller('HangmanController',['$scope', function($scope){
 	},
 	isCharExist = function(char){
 		return indexesOf($scope.wordToFindArray, char).length > 0
-	}
+	},
 	checkLetter = function(char){
 		if(isCharExist(char)){
-			$scope.currentWord = replaceChars($scope.currentWord, indexesOf($scope.wordToFindArray, char), char);
 			return true;
 		}
 		else return false;
+	},
+	checkError = function(){
+
 	}
 
 	$scope.wordToFind = "impertinente";
@@ -91,25 +93,27 @@ app.controller('HangmanController',['$scope', function($scope){
 		$scope.inputWritted = $scope.letter;
 	}
 	$scope.$watch('letter', function(newLetter, oldLetter){
-		console.log("letter", "newLetter", newLetter, "oldLetter", oldLetter, "letter", $scope.letter);
+		// Si la lettre n'est pas null
 		if($scope.letter){
-						// console.log("on a taper une letter, existe-t-elle ? ", isCharExist($scope.letter));
-			$scope.alphabet[$scope.letter] = true;
-			if(checkLetter($scope.letter)){
-				// draw();
+			// Si la lettre n'a pas encore ete taper, on met a jour les V et X
+			if(!$scope.alphabet[$scope.letter]){
+				$scope.alphabet[$scope.letter] = true;
 			} else {
-				$scope.nbErrors++;
-				draw($scope.nbErrors);
-				//TODO error !
+				console.warn("Lettre deja taper !");
 			}
-
-			// if(newLetter !== oldLetter){
-			// 	if($scope.letter.length > 1){
-			// 		$scope.letter = $scope.letter[0];
-			// 	} else {
-			// 		// it's a new letter, check if exists
-			// 	}
-			// }
+			// Si la lettre est dans le mot
+			if(checkLetter($scope.letter)){
+				//On remplace toutes les lettres existatne dans le mot
+				$scope.currentWord = replaceChars($scope.currentWord, indexesOf($scope.wordToFindArray, $scope.letter), $scope.letter);
+			} else {
+				// Si on peut encore faire des erreurs
+				if(!checkError()){
+					//On incremente le nombre d'eerurs
+					$scope.nbErrors++;
+					// On dessine sur le canvas la nouvelle erreur
+					draw($scope.nbErrors);
+				}
+			}
 		}
 	})
 

@@ -16,8 +16,7 @@
 <body class="container" ng-app="hangman.app" ng-controller="HangmanController">
 
 	<div class="row justify-content-lg-center">
-		<canvas id="canvas" class"col-6" width="150" height="150"></canvas>
-		<div class="col">
+		<canvas id="canvas" class"col-6" width="500" height="500"></canvas>	<div class="col">
 			<span>Nombre d'erreurs : {{ nbErrors }}</span>
 		</div>
 	</div>
@@ -52,6 +51,8 @@
 		</div>
 	</div>
 
+	<img id="wood" src="img/strip_of_wood.png" aria-hidden="true" data-ng-if="false"/>
+	<img id="rope" src="img/rope.gif" aria-hidden="true" data-ng-if="false"/>
 <script src="js/canvas.js" charset="utf-8"></script>
 </body>
 </html>
