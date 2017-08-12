@@ -50,28 +50,51 @@ app.controller('HangmanController',['$scope', function($scope){
 	$scope.currentWord = "";
 	$scope.letter = "";
 	$scope.nbErrors = 0;
+	$scope.alphabet = {
+		a: false,
+		b: false,
+		c: false,
+		d: false,
+		e: false,
+		f: false,
+		g: false,
+		h: false,
+		i: false,
+		j: false,
+		k: false,
+		l: false,
+		m: false,
+		n: false,
+		o: false,
+		p: false,
+		q: false,
+		r: false,
+		s: false,
+		t: false,
+		u: false,
+		v: false,
+		w: false,
+		x: false,
+		y: false,
+		z: false
+	};
 	init();
 
 
 	$scope.changeLetter = function($event){
-		console.log("event", $event);
+		// console.log("event", $event);
 		if($scope.inputWritted.length > 1){
 			$scope.letter = $scope.inputWritted[$scope.inputWritted.length-1];
 		} else {
 			$scope.letter = $scope.inputWritted;
 		}
+		$scope.inputWritted = $scope.letter;
 	}
 	$scope.$watch('letter', function(newLetter, oldLetter){
 		console.log("letter", "newLetter", newLetter, "oldLetter", oldLetter, "letter", $scope.letter);
 		if($scope.letter){
-			if(newLetter.length > 1){
-				// $scope.letter = newLetter[newLetter.length-1]
-				// $scope.nbErrors++;
-			} else {
-				// $scope.letter = newLetter;
-				// $scope.nbErrors++;
-			}
-			// console.log("on a taper une letter, existe-t-elle ? ", isCharExist($scope.letter));
+						// console.log("on a taper une letter, existe-t-elle ? ", isCharExist($scope.letter));
+			$scope.alphabet[$scope.letter] = true;
 			if(checkLetter($scope.letter)){
 				// draw();
 			} else {
