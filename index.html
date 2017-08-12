@@ -1,0 +1,42 @@
+<!DOCTYPE>
+<html>
+<head>
+	<link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/main.css">
+	<script src="vendor/angular/angular.min.js" charset="utf-8"></script>
+	<script src="vendor/jQuery/jquery-2.2.0.min.js" charset="utf-8"></script>
+	<script src="vendor/bootstrap/js/bootstrap.min.js" charset="utf-8"></script>
+	<script src="js/app.js" charset="utf-8"></script>
+
+</head>
+
+<body ng-app="hangman.app" ng-controller="HangmanController">
+
+	<div class="">
+		<canvas id="canvas" width="150" height="150"></canvas>
+	</div>
+
+	<div class="row">
+		<div class="col-md-9 col-md-offset-3">
+			<span class="currentWord">{{ currentWord }}</span>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="form-group col-md-offset-3 col-md-2">
+			<label for="idLetter">Tapes une lettre :</label>
+			<input id="idLetter" class="form-control col-xs-1 col-sm-1 col-md-1 col-lg-1" type="text" data-ng-model="inputWritted" value="{{letter}}" autofocus="true" data-ng-change="changeLetter($event)">
+		</div>
+		<div>
+			<span>Nombre d'erreurs : {{ nbErrors }}</span>
+		</div>
+	</div>
+
+	<div class="row">
+		<!-- All letters  -->
+	</div>
+
+
+<script src="js/canvas.js" charset="utf-8"></script>
+</body>
+</html>

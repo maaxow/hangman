@@ -1,0 +1,14 @@
+.draw {
+}
+.currentWord {
+	font-size: 38px;
+	letter-spacing: 30px;
+	margin-top: 100px;
+}
+
+.pillierBas {
+	background-color: black;
+	color: black;
+	width: 100px;
+
+}
